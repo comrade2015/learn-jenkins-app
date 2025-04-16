@@ -9,7 +9,7 @@ pipeline {
                     reuseNode true
                 }
             }    
-            
+
             steps {
                 sh '''
                     ls -la
@@ -37,6 +37,12 @@ pipeline {
                    npm test
                 '''
             }
+        }
+    }
+    
+    post {
+        always {
+            junit 'test-result/junit.xml'
         }
     }
 }
